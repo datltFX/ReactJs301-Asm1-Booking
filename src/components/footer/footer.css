@@ -1,19 +1,17 @@
 .footer {
   width: 100%;
-  width: 1024px;
-  font-size: 12px;
+  font-size: medium;
 }
 
 .fLists {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
+  justify-content: center;
+  gap: 5%;
+  margin-bottom: 2%;
 }
 
 .fList {
   list-style: none;
-  padding: 0;
 }
 
 .fListItem {

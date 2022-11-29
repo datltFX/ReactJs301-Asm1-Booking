@@ -64,3 +64,8 @@
   font-weight: 500;
   cursor: pointer;
 }
+.popupSearch > button:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+}

@@ -1,11 +1,33 @@
+import { useState } from "react";
 import "./searchList.css";
 
 const SearchList = (props) => {
+  // console.log(props.items);
+  const [modal, setModal] = useState(false);
+  const [imgModal, setImgModal] = useState("");
+
+  //event click image
+  const imageModalHandler = (i) => {
+    setImgModal(props.items[i]);
+    setModal(true);
+  };
+
+  //hide
+  const closeHandler = () => {
+    setModal(false);
+  };
+
+  //render
   return (
     <div>
-      {props.items.map((item) => (
-        <div className="searchItem">
-          <img src={item.image_url} alt="" className="siImg" />
+      {props.items.map((item, index) => (
+        <div className="searchItem" key={index}>
+          <img
+            src={item.image_url}
+            alt=""
+            className="siImg"
+            onClick={() => imageModalHandler(index)}
+          />
           <div className="siDesc">
             <h1 className="siTitle">{item.name}</h1>
             <span className="siDistance">{item.distance} from center</span>
@@ -38,6 +60,16 @@ const SearchList = (props) => {
           </div>
         </div>
       ))}
+      {/*--------------- displaymodal----------------- */}
+      {modal && (
+        <div>
+          <div className="backdrop" onClick={closeHandler} />
+          <div className="modal">
+            <i className="fas fa-times-circle close" onClick={closeHandler} />
+            <img src={imgModal.image_url} alt="" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

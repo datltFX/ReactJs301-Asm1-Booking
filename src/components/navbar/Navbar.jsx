@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import navBar from "../../data/navBar.json";
 import NavBarItem from "../NavBarItem/NavBarItem";
 import "./navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  //ve trang home
   const handlerHome = () => {
-    window.location.replace("/");
+    navigate("/");
   };
+
+  //render
   return (
     <div className="navbar">
       <div className="navbarContainer">

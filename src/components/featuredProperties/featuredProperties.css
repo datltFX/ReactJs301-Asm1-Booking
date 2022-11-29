@@ -11,6 +11,10 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+}
+.fpItem:hover {
+  transform: scale(1.05);
 }
 
 .fpImg {

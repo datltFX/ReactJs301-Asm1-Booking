@@ -12,6 +12,9 @@
   overflow: hidden;
   cursor: pointer;
 }
+.pListItem:hover {
+  transform: scale(1.05);
+}
 
 .pListImg {
   width: 100%;

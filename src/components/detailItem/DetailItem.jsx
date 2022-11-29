@@ -1,9 +1,39 @@
+import { useState } from "react";
 import "./detailItem.css";
+
 const DetailItem = (props) => {
+  // console.log(props.items);
+  // console.log(props.items[0].photos);
+  const [modal, setModal] = useState(false);
+  const [indexImage, setIndexImage] = useState("");
+
+  //event click image
+  const imageModalHandler = (i) => {
+    setIndexImage(i);
+    setModal(true);
+  };
+
+  //hide
+  const closeHandler = () => {
+    setModal(false);
+  };
+
+  //moving slide
+  const moveSlideHandler = (leftright) => {
+    let newSlide;
+    if (leftright === "left") {
+      newSlide = indexImage === 0 ? 5 : indexImage - 1;
+    } else {
+      newSlide = indexImage === 5 ? 0 : indexImage + 1;
+    }
+    setIndexImage(newSlide);
+  };
+
+  //render
   return (
     <div>
-      {props.items.map((item) => (
-        <div className="detail">
+      {props.items.map((item, index) => (
+        <div className="detail" key={index}>
           <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="detailTitle">{item.name}</h1>
           <div className="detailAddress">
@@ -13,9 +43,16 @@ const DetailItem = (props) => {
           <span className="detailDistance">{item.distance}</span>
           <span className="detailPriceHighlight">{item.price}</span>
           <div className="detailImages">
-            {item.photos.map((photo) => (
-              <div className="detailImgWrapper">
-                <img src={photo} alt="" className="detailImg" />
+            {item.photos.map((photo, i) => (
+              <div className="detailImgWrapper" key={i}>
+                <img
+                  src={photo}
+                  alt=""
+                  className="detailImg"
+                  onClick={() => {
+                    imageModalHandler(i);
+                  }}
+                />
               </div>
             ))}
           </div>
@@ -38,6 +75,27 @@ const DetailItem = (props) => {
           </div>
         </div>
       ))}
+      {/*--------------- displaymodal----------------- */}
+      {modal && (
+        <div>
+          <div className="backdropDetail" onClick={closeHandler} />
+          <div className="modalDetail">
+            <i
+              className="fas fa-times-circle closeDetail"
+              onClick={closeHandler}
+            />
+            <i
+              className="fas fa-chevron-circle-left arrowLeft"
+              onClick={() => moveSlideHandler("left")}
+            />
+            <img src={props.items[0].photos[indexImage]} alt="" />
+            <i
+              className="fas fa-chevron-circle-right arrowRight"
+              onClick={() => moveSlideHandler("right")}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

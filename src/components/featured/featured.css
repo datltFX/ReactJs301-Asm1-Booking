@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  z-index: 1;
 }
 
 .featuredItem {
@@ -14,6 +13,10 @@
   overflow: hidden;
   height: 250px;
   flex: 1;
+  cursor: pointer;
+}
+.featuredItem:hover {
+  transform: scale(1.08);
 }
 
 .featuredImg {
@@ -21,7 +24,6 @@
   height: 100%;
   object-fit: cover;
 }
-
 .featuredTitles {
   position: absolute;
   bottom: 20px;
