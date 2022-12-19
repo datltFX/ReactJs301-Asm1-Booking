@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "./featuredProperties.css";
 
 const FeaturedProperties = (props) => {
+  const navigate = useNavigate();
   //sang trang detail
   const handlerDetail = () => {
-    window.location.replace("/detail");
+    navigate("/detail");
   };
 
   //render
